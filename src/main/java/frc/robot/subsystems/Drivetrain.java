@@ -74,4 +74,18 @@ public class Drivetrain extends SubsystemBase {
   public void reset() {
     navx.reset();
   }
+
+  public double getTicks() {
+    return (leftDriveTalon.getSelectedSensorPosition(0) + 
+      rightDriveTalon.getSelectedSensorPosition(0)) / 2;
+  }
+
+  public double getMeters() {
+    return (getTicks() / 4096) * 6 * Math.PI;
+  }
+  public void resetEncoders() {
+    leftDriveTalon.setSelectedSensorPosition(0);
+    rightDriveTalon.setSelectedSensorPosition(0);
+  }
+ 
 }
